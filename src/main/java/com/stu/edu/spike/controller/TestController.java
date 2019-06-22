@@ -9,6 +9,7 @@
 package com.stu.edu.spike.controller;
 
 import com.stu.edu.spike.domain.User;
+import com.stu.edu.spike.redis.RedisService;
 import com.stu.edu.spike.result.Result;
 import com.stu.edu.spike.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,8 @@ public class TestController {
 
     @Autowired
     UserService userService;
+    @Autowired
+    RedisService redisService;
 
     @RequestMapping("/thymeleaf")
     public String thymeleaft(Model model){
@@ -33,5 +36,12 @@ public class TestController {
     @ResponseBody
     public Result<User> getUserByid(){
         return Result.success(userService.getUser(0));
+    }
+
+    @RequestMapping("/redis/get")
+    @ResponseBody
+    public Result<Long> redisGet(){
+        Long v1 = redisService.get("key1", Long.class);
+        return Result.success(v1);
     }
 }

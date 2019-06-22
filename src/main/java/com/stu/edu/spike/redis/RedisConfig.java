@@ -1,0 +1,71 @@
+/*
+ * Copyright (c) 2019. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+ * Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
+ * Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
+ * Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
+ * Vestibulum commodo. Ut rhoncus gravida arcu.
+ */
+
+package com.stu.edu.spike.redis;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
+
+@Component
+@ConfigurationProperties(prefix = "redis")
+public class RedisConfig {
+    private String host;
+    private int port;
+    private int timeout;
+    private int poolMaxTotal;
+    private int poolMaxIdle;
+    private int poolMaxWait;
+
+    public String getHost() {
+        return host;
+    }
+
+    public void setHost(String host) {
+        this.host = host;
+    }
+
+    public int getPort() {
+        return port;
+    }
+
+    public void setPort(int port) {
+        this.port = port;
+    }
+
+    public int getTimeout() {
+        return timeout;
+    }
+
+    public void setTimeout(int timeout) {
+        this.timeout = timeout;
+    }
+
+    public int getPoolMaxTotal() {
+        return poolMaxTotal;
+    }
+
+    public void setPoolMaxTotal(int poolMaxTotal) {
+        this.poolMaxTotal = poolMaxTotal;
+    }
+
+    public int getPoolMaxIdle() {
+        return poolMaxIdle;
+    }
+
+    public void setPoolMaxIdle(int poolMaxIdle) {
+        this.poolMaxIdle = poolMaxIdle;
+    }
+
+    public int getPoolMaxWait() {
+        return poolMaxWait;
+    }
+
+    public void setPoolMaxWait(int poolMaxWait) {
+        this.poolMaxWait = poolMaxWait;
+    }
+}
