@@ -10,6 +10,7 @@ package com.stu.edu.spike.controller;
 
 import com.stu.edu.spike.domain.User;
 import com.stu.edu.spike.redis.RedisService;
+import com.stu.edu.spike.redis.Userkey;
 import com.stu.edu.spike.result.Result;
 import com.stu.edu.spike.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,16 +33,23 @@ public class TestController {
         return "Hello";
     }
 
-    @RequestMapping("/testDb")
-    @ResponseBody
-    public Result<User> getUserByid(){
-        return Result.success(userService.getUser(0));
-    }
-
     @RequestMapping("/redis/get")
     @ResponseBody
-    public Result<Long> redisGet(){
-        Long v1 = redisService.get("key1", Long.class);
+    public Result<User> redisGet(){
+        User v1 = redisService.get(Userkey.getById, ""+3, User.class);
         return Result.success(v1);
+    }
+
+    @RequestMapping("/redis/set")
+    @ResponseBody
+    public Result<Boolean> redisSet(){
+        User user = new User();
+        user.setId(3);
+        user.setAge(20);
+        user.setGender(0);
+        user.setName("zhushuaiwei");
+        redisService.set(Userkey.getById, ""+user.getId(), user);
+        return Result.success(true);
+
     }
 }
